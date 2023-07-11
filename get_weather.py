@@ -2,7 +2,7 @@ import requests
 from get_coordinates import get_latitude_longitude
 
 
-def get_weather(latitude, longitude):
+def get_weather(latitude, longitude, city_name):
     url = 'https://weather.com/api/v1/p/redux-dal'
 
     headers = {
@@ -64,7 +64,7 @@ def get_weather(latitude, longitude):
         wind_speed = round(data['windSpeed'] * 1.60934, 2)
         humidity = data['relativeHumidity']
 
-        print(f'Today at Moscow Right now: {temperature_now}°, Max: {max24hours}°,Min: {min24hours}°\n'
+        print(f'Weather in {city_name}\nRight now: {temperature_now}°, Max: {max24hours}°,Min: {min24hours}°\n'
               f'Wind Speed: {wind_speed}kmh, Humidity: {humidity}%')
 
     except Exception as e:
@@ -74,4 +74,4 @@ def get_weather(latitude, longitude):
 if __name__ == "__main__":
     city = input("Enter city: ")
     lat, long = get_latitude_longitude(city)
-    get_weather(latitude=lat, longitude=long)
+    get_weather(latitude=lat, longitude=long, city_name=city)
